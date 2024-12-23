@@ -141,7 +141,6 @@ AIアシスタントの応答のみを改善するのではなく、会話全体
         main_model=model_name,
         api_type="ollama",
     )
-    print(response)
 
     # 応答をパースし、改善された会話データを返す
     try:
@@ -156,16 +155,17 @@ AIアシスタントの応答のみを改善するのではなく、会話全体
 
 # 使用例
 if __name__ == "__main__":
-    conversation = [
-        {"role": "user", "content": "nurture intelligenceについて教えてください。"},
-        {"role": "assistant", "content": "nurture intelligenceとは何ですか？"},
-        {"role": "user", "content": "nuruture intelligence は育知能といって、育っていく知能のことであって、私はそれをAI分野でやろうとしてるんだ。"},
-        {"role": "assistant", "content": "なるほど、ではnurture intelligenceを利用してやりたいことなどを教えてください。"}
-    ]
-
-    improved_conversation = analyze_conversation(
-        conversation, output_file="improved_conversations.jsonl"
-    )
-
-    if improved_conversation:
-        print("改善された会話データ:", improved_conversation)
+    # JSONLファイルから会話データを読み込む
+    conversation_list = []
+    with open('chat_hisstory.jsonl', 'r', encoding='utf-8') as f:
+        for line in f:
+            conversation = json.loads(line.strip())
+            conversation_list.append(conversation)
+    
+    # 各会話データに対して改善を実行
+    for conversation in conversation_list:
+        improved_conversation = analyze_conversation(
+            conversation, output_file="improved_conversations.jsonl"
+        )
+        if improved_conversation:
+            print("改善された会話データ:", improved_conversation)
