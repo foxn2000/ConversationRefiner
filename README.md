@@ -40,20 +40,7 @@ ConversationRefiner は、ユーザーとAIアシスタントの会話データ�
 
 ## 使い方
 
-1. **`analyze_conversation` 関数の実行:**  改善したい会話データのリストを `analyze_conversation` 関数に渡します。
-
-    ```python
-    from your_module import analyze_conversation  # your_module は実際のモジュール名に置き換えてください
-
-    conversation = [
-        {"role": "user", "content": "スマホを使ってるんだけど、デフォルトのブラウザってなんだっけ？"},
-        {"role": "assistant", "content": "あなたはどのようなスマホを使ってるんです？"},
-        {"role": "user", "content": "iPhoneだよ"},
-        {"role": "assistant", "content": "iPhoneの場合だとSafariが標準ブラウザになっています。"}
-    ]
-
-    improved_conversation = analyze_conversation(conversation, output_file="improved_conversations.jsonl")
-    print(improved_conversation)
-    ```
+1. **`analyze_conversation` 関数の実行:**  改善したい会話データのリストを 'chat_hisstory.jsonl' に保存します。
+2. 
 
     `output_file` 引数で、改善された会話データを保存するJSONLファイルのパスを指定できます。
