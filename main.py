@@ -3,7 +3,7 @@ from typing import List, Dict, Any
 import os
 
 # 関数群、環境が不明なため、関数がある前提で話を進めます。
-from function.funs import gpt_chat, ollama_chat, groq_chat
+from function.funs import xai_chat, ollama_chat, groq_chat
 
 # 環境変数を読み込みます
 SYSTEM_PROMPT = os.environ.get("SYSTEM_PROMPT","あなたは役立つAIアシスタントです。")
@@ -30,7 +30,7 @@ def chat_wrapper(
     if api_type == "ollama":
         return ollama_chat(user_inputs, system_prompt, main_model)
     elif api_type == "xai":
-        return gpt_chat(user_inputs, system_prompt, main_model)
+        return xai_chat(user_inputs, system_prompt, main_model)
     elif api_type == "groq":
         return groq_chat(user_inputs, system_prompt, main_model)
     else:
